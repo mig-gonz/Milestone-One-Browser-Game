@@ -4,7 +4,7 @@ This is a browser game for my Milestone project, written in html, CSS, and JavaS
 Title: No Refunds!
 
 My game will be a price guessing trivia game, inspired by the price is right. 
-You will have to guess the price of random items that exist in today's markets, and 100 points will be awarded for every correct answer and -25 points for every wrong answer.
+You will have to guess the price of random items that exist in today's markets. 100 points will be awarded for every correct answer and -25 points for every wrong answer.
 
 You win if you reach 1,000 points on or before the 20th game question.
 
