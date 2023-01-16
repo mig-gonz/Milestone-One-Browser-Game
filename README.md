@@ -1,7 +1,7 @@
 # Milestone-One-Browser-Game
 This is a browser game for my Milestone project, written in html, CSS, and JavaScript.
 
-Title: No Refunds!
+Title: (title)
 
 My game will be a price guessing trivia game, inspired by the price is right. 
 You will have to guess the price of random items that exist in today's markets.
