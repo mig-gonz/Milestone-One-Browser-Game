@@ -1,3 +1,1 @@
-console.log("We're live!");
-
-// testing commit
+console.log("live");
