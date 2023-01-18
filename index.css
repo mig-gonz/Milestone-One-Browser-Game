@@ -3,3 +3,48 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+#header {
+  /* border: solid 2px red; */
+  width: 50%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+#title {
+  /* border: solid 3px yellow; */
+  margin: 1em 0;
+}
+
+#main-content {
+  /* border: solid 3px blue; */
+  height: 70vh;
+  width: 70vw;
+  margin: auto;
+}
+
+/* .section-one {
+  border: solid 3px orange;
+  margin-top: 3em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
+
+.sub-header {
+  margin: 1em 0;
+}
+
+.para-text {
+  /* border: solid 3px pink; */
+  width: 50%;
+  height: 20vh;
+  padding: 0.5em;
+  font-size: 20px;
+}
+
+.btn {
+  height: 4em;
+  width: 10em;
+}
