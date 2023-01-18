@@ -2,49 +2,75 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  /* variables */
+
+  /* colors */
+  --primary: #dee7e7;
+  --co-one: #f8f7ff;
+  --co-two: #242433;
 }
 
+body {
+  background: var(--primary);
+}
+
+/* header */
 #header {
-  /* border: solid 2px red; */
-  width: 50%;
-  margin: auto;
+  /* add a gradient color for the background */
+
+  border: solid 3px #4f646f;
+  border-radius: 5px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  margin: 4em auto;
+  width: 50vw;
+  height: 4em;
 }
 
+/* title */
 #title {
-  /* border: solid 3px yellow; */
-  margin: 1em 0;
+  color: black;
 }
-
+/* main-content */
 #main-content {
-  /* border: solid 3px blue; */
-  height: 70vh;
-  width: 70vw;
-  margin: auto;
-}
-
-/* .section-one {
-  border: solid 3px orange;
-  margin-top: 3em;
+  border: solid 3px #4f646f;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-} */
+  width: 60vw;
+  height: 60vh;
+  margin: auto;
+  background: var(--co-one);
+}
 
+/* sub-header */
 .sub-header {
-  margin: 1em 0;
+  color: black;
 }
 
+/* para-text */
 .para-text {
-  /* border: solid 3px pink; */
+  color: black;
   width: 50%;
-  height: 20vh;
-  padding: 0.5em;
-  font-size: 20px;
+  margin: 1em;
+  padding: 5px;
+  font-size: 1.5rem;
 }
 
+/* btn */
 .btn {
-  height: 4em;
+  color: black;
+  height: 5em;
   width: 10em;
+  border-radius: 50%;
+}
+
+/* span */
+.span-one {
+  text-decoration: underline;
+  font-weight: 500;
 }
