@@ -12,14 +12,32 @@
 }
 
 body {
-  background: var(--primary);
+  /* background: var(--primary); */
+  background: url(/images/win.png) center/cover no-repeat;
+  border: dashed 3px rgb(255, 217, 0);
+  height: 100vh;
+}
+.left,
+.right {
+  background: url(/images/wheel.png) center/cover no-repeat;
+  width: 20vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  border: dashed 3px rgb(255, 217, 0);
+}
+.left {
+  left: 0;
+}
+.right {
+  right: 0;
 }
 
 /* header */
 #header {
   /* add a gradient color for the background */
 
-  border: solid 3px #4f646f;
+  /* border: solid 3px #4f646f; */
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -35,16 +53,17 @@ body {
 }
 /* main-content */
 #main-content {
-  border: solid 3px #4f646f;
+  /* border: solid 3px #4f646f; */
+  /* background: var(--co-one); */
+  background: rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 60vw;
-  height: 60vh;
+  width: 50vw;
+  height: 50vh;
   margin: auto;
-  background: var(--co-one);
 }
 
 /* sub-header */
@@ -64,6 +83,8 @@ body {
 /* btn */
 .btn {
   color: black;
+  font-size: 15px;
+  font-weight: 500;
   height: 5em;
   width: 10em;
   border-radius: 50%;
