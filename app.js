@@ -1,128 +1,170 @@
-// make an array of questions, 1 question per item (20 items).
-// create a function that iterates through the questions displaying each following question as the user answers and moves to the next question.
-// add a text box for score tracking in our questions array
-// add four buttons for price answer options
+// declared variables
+const startBtn = document.querySelector(".start-btn");
+const questionElement = document.querySelector(".question");
+const buttons = document.querySelector(".buttons");
+const nextButton = document.querySelector(".next-btn");
+const img = document.querySelector(".image");
+const score = document.querySelector(".score");
+const subHeading = document.querySelector(".sub-header");
+const paraText = document.querySelector(".para-text");
+const btn = document.querySelector(".btn");
+let points = 0;
+let pointKeeper = document.querySelector(".points");
+let randomQuestions, questionIndex;
+// var end
 
-const mainContent = `<h2 class="sub-header">
-          Bid to Win, inspired by "The Price Is Right"
-        </h2>
-        <p class="para-text">
-          <span class="span-one">Bid to Win</span>: an online browser game where you have to guess the price of
-          each shown item. Getting the answer correct will earn you 100 points.
-          You have to reach a total score of 1,000 points to win, and you only
-          have 20 items to guess from. You have to earn the 1,000 points before
-          or on the 20th-item question, or you lose the game, good luck!
-        </p> 
-        <button class="btn">Begin Game</button> `;
+// start/next button event listeners
+startBtn.addEventListener("click", startGame);
+nextButton.addEventListener("click", () => {
+  questionIndex++;
+  nextQuestion();
+});
+// event end <><>
 
-// my questions array
-const questions = [
-  `<div class="wrapper"><img class="image" src="images/bigmac.png" alt="big-mac combo">
-<h4 class="question">What is the correct price of $/{item name}</h4><div class="buttons">
-<button class="question-btn">$4.29</button><button class="question-btn">$7.89</button><button class="question-btn">$2.99</button><button class="question-btn">$6.29</button><p class="score">score:</p></div>
-</div>
-`,
-  `<div class="wrapper"><img class="image" src="images/computer.png" alt="computer">
-<h4 class="question">What is the correct price of $/{item name}</h4><div class="buttons">
-<button class="question-btn">$1,289</button><button class="question-btn">$746</button><button class="question-btn">$1,100</button><button class="question-btn">$999</button><p class="score">score:</p></div>
-</div>
-`,
-  `<div class="wrapper"><img class="image" src="images/couch.png" alt="couch">
-<h4 class="question">What is the correct price of $/{item name}</h4><div class="buttons">
-<button class="question-btn">$800</button><button class="question-btn">$7,500</button><button class="question-btn">$16,800</button><button class="question-btn">$8,476</button><p class="score">score:</p></div>
-</div>
-`,
-  `<div class="wrapper"><img class="image" src="images/dish-soap.png" alt="dish soap">
-<h4 class="question">What is the correct price of $/{item name}</h4><div class="buttons">
-<button class="question-btn">$2.99</button><button class="question-btn">$3.99</button><button class="question-btn">$4.19</button><button class="question-btn">$2.89</button><p class="score">score:</p></div>
-</div>
-`,
-  `<div class="wrapper"><img class="image" src="images/dog-food.png" alt="dog food">
-<h4 class="question">What is the correct price of $/{item name}</h4><div class="buttons">
-<button class="question-btn">$14.99</button><button class="question-btn">$7.89</button><button class="question-btn">$23</button><button class="question-btn">$16.79</button><p class="score">score:</p></div>
-</div>
-`,
-  `<div class="wrapper"><img class="image" src="images/drone.png" alt="drone">
-<h4 class="question">What is the correct price of $/{item name}</h4><div class="buttons">
-<button class="question-btn">$299</button><button class="question-btn">$646</button><button class="question-btn">$500</button><button class="question-btn">$259</button><p class="score">score:</p></div>
-</div>
-`,
-  `<div class="wrapper"><img class="image" src="images/egg.png" alt="eggs in a basket">
-<h4 class="question">What is the correct price of $/{item name}</h4><div class="buttons">
-<button class="question-btn">$39.99</button><button class="question-btn">$13.69</button><button class="question-btn">$10</button><button class="question-btn">$6.99</button><p class="score">score:</p></div>
-</div>
-`,
-  `<div class="wrapper"><img class="image" src="images/frame.png" alt="picture frame">
-<h4 class="question">What is the correct price of $/{item name}</h4><div class="buttons">
-<button class="question-btn">$1,400</button><button class="question-btn">$9,900</button><button class="question-btn">$16,488</button><button class="question-btn">$7,400</button><p class="score">score:</p></div>
-</div>
-`,
-  `<div class="wrapper"><img class="image" src="images/globe.png" alt="globe">
-<h4 class="question">What is the correct price of $/{item name}</h4><div class="buttons">
-<button class="question-btn">$13</button><button class="question-btn">$9</button><button class="question-btn">$22</button><button class="question-btn">$36</button><p class="score">score:</p></div>
-</div>
-`,
-  `<div class="wrapper"><img class="image" src="images/guitar.png" alt="guitar">
-<h4 class="question">What is the correct price of $/{item name}</h4><div class="buttons">
-<button class="question-btn">$1,800</button><button class="question-btn">$700</button><button class="question-btn">$489</button><button class="question-btn">$1,300</button><p class="score">score:</p></div>
-</div>
-`,
-  `<div class="wrapper"><img class="image" src="images/headset.png" alt="gamer headset">
-<h4 class="question">What is the correct price of $/{item name}</h4><div class="buttons">
-<button class="question-btn">$180</button><button class="question-btn">$422</button><button class="question-btn">$389</button><button class="question-btn">$120</button><p class="score">score:</p></div>
-</div>
-`,
-  `<div class="wrapper"><img class="image" src="images/jackson8.png" alt="Lamar Jackson figurine">
-<h4 class="question">What is the correct price of $/{item name}</h4><div class="buttons">
-<button class="question-btn">$32</button><button class="question-btn">$18</button><button class="question-btn">$8.56</button><button class="question-btn">$19.89</button><p class="score">score:</p></div>
-</div>
-`,
-  `<div class="wrapper"><img class="image" src="images/joe.png" alt="autographed joe montana football">
-<h4 class="question">What is the correct price of $/{item name}</h4><div class="buttons">
-<button class="question-btn">$600</button><button class="question-btn">$32,000</button><button class="question-btn">$1,600</button><button class="question-btn">$14,089</button><p class="score">score:</p></div>
-</div>
-`,
-  `<div class="wrapper"><img class="image" src="images/lawn-mower.png" alt="lawn mower">
-<h4 class="question">What is the correct price of $/{item name}</h4><div class="buttons">
-<button class="question-btn">$349</button><button class="question-btn">$659</button><button class="question-btn">$739</button><button class="question-btn">$459/button><p class="score">score:</p></div>
-</div>
-`,
-  `<div class="wrapper"><img class="image" src="images/nmd.png" alt="addidas nmd shoes">
-<h4 class="question">What is the correct price of $/{item name}</h4><div class="buttons">
-<button class="question-btn">$120</button><button class="question-btn">$160</button><button class="question-btn">$100</button><button class="question-btn">$220</button><p class="score">score:</p></div>
-</div>
-`,
-  `<div class="wrapper"><img class="image" src="images/ps.png" alt="playstation console">
-<h4 class="question">What is the correct price of $/{item name}</h4><div class="buttons">
-<button class="question-btn">$29</button><button class="question-btn">$39</button><button class="question-btn">$25</button><button class="question-btn">$19</button><p class="score">score:</p></div>
-</div>
-`,
-  `<div class="wrapper"><img class="image" src="images/ps5.png" alt="ps5 remote controller">
-<h4 class="question">What is the correct price of $/{item name}</h4><div class="buttons">
-<button class="question-btn">$59.99</button><button class="question-btn">$79</button><button class="question-btn">$45</button><button class="question-btn">$69.99</button><p class="score">score:</p></div>
-</div>
-`,
-  `<div class="wrapper"><img class="image" src="images/tickets.png" alt="flight tickets to las vegas">
-<h4 class="question">What is the correct price of $/{item name}</h4><div class="buttons">
-<button class="question-btn">$229</button><button class="question-btn">$400</button><button class="question-btn">$456</button><button class="question-btn">$339</button><p class="score">score:</p></div>
-</div>
-`,
-  `<div class="wrapper"><img class="image" src="images/velar.png" alt="range rover velar car">
-<h4 class="question">What is the correct price of $/{item name}</h4><div class="buttons">
-<button class="question-btn">$32,000</button><button class="question-btn">$65,000</button><button class="question-btn">$75,000</button><button class="question-btn">$49,999</button><p class="score">score:</p></div>
-</div>
-`,
-  `<div class="wrapper"><img class="image" src="images/water.png" alt="bottled water">
-<h4 class="question">What is the correct price of $/{item name}</h4><div class="buttons">
-<button class="question-btn">$.79</button><button class="question-btn">$.69</button><button class="question-btn">$1.99</button><button class="question-btn">$1.29</button><p class="score">score:</p></div>
-</div>
-`,
-];
-// console.log(questions.length);
-// view controller function
-function switchView(e) {
-  document.querySelector("#main-content").innerHTML = e;
+// our start game function
+function startGame() {
+  questionElement.classList.remove("hide");
+  buttons.classList.remove("hide");
+  score.classList.remove("hide");
+  nextButton.classList.remove("hide");
+
+  points = 0;
+  pointKeeper.innerText = points;
+
+  randomQuestions = questions.sort(() => Math.random() - 0.5);
+  questionIndex = 0;
+
+  subHeading.classList.add("hide");
+  paraText.classList.add("hide");
+  startBtn.classList.add("hide");
+
+  nextQuestion();
 }
+// start game end  <><>
 
-// switchView(mainContent);
-switchView(questions[14]);
+// next question function
+function nextQuestion() {
+  resetState();
+  showQuestion(randomQuestions[questionIndex]);
+}
+// next question end <><>
+
+//  function show question
+function showQuestion(question) {
+  questionElement.innerText = question.question;
+  img.src = question.image;
+  question.answers.forEach((answer) => {
+    const button = document.createElement("button");
+    button.innerText = answer.text;
+    button.classList.add("question-btn");
+    if (answer.correct) {
+      button.dataset.correct = answer.correct;
+    }
+    button.addEventListener("click", selectedAnswer);
+    buttons.appendChild(button);
+  });
+}
+// show question end <><>
+
+// fucntion reset state
+function resetState() {
+  clearStatusClass(document.body);
+  nextButton.classList.add("hide");
+  while (buttons.firstChild) {
+    buttons.removeChild(buttons.firstChild);
+  }
+}
+// reset state end
+
+// selected answer function
+function selectedAnswer(e) {
+  const selectedBtn = e.target;
+  const correct = selectedBtn.dataset.correct;
+  if (correct) {
+    points += 100;
+    pointKeeper.innerText = points;
+  }
+  setStatusClass(document.body, correct);
+  Array.from(buttons.children).forEach((button) => {
+    setStatusClass(button, button.dataset.correct);
+  });
+  if (randomQuestions.length > questionIndex + 1) {
+    nextButton.classList.remove("hide");
+  } else {
+    startBtn.innerText = "Restart";
+    startBtn.classList.remove("hide");
+  }
+}
+// selected answer function end
+
+// fucntion set class status
+function setStatusClass(element, correct) {
+  clearStatusClass(element);
+  if (correct) {
+    element.classList.add("correct");
+  } else {
+    element.classList.add("wrong");
+  }
+}
+// set status end <><><>
+
+// function clear status
+function clearStatusClass(element) {
+  element.classList.remove("correct");
+  element.classList.remove("wrong");
+}
+//  clear status end <><>
+
+// questions array
+const questions = [
+  {
+    image: "images/lawn-mower.png",
+    question: "what is the correct price of this lawnmower?",
+    answers: [
+      { text: "$349", correct: false },
+      { text: "$659", correct: false },
+      { text: "$739", correct: false },
+      { text: "$459", correct: true },
+    ],
+  },
+  {
+    image: "images/dog-food.png",
+    question: "what is the correct price of this bag of dog food?",
+    answers: [
+      { text: "$3.86", correct: false },
+      { text: "$13.58", correct: true },
+      { text: "$7.89", correct: false },
+      { text: "$17.99", correct: false },
+    ],
+  },
+  {
+    image: "images/egg.png",
+    question: "what is the correct price of these eggs?",
+    answers: [
+      { text: "$4.79", correct: false },
+      { text: "$12.00", correct: false },
+      { text: "$9.89", correct: true },
+      { text: "$6.79", correct: false },
+    ],
+  },
+  {
+    image: "images/nmd.png",
+    question: "what is the correct price of this pair of addidas sneakers?",
+    answers: [
+      { text: "$80", correct: false },
+      { text: "$99", correct: false },
+      { text: "$220", correct: false },
+      { text: "$120", correct: true },
+    ],
+  },
+  {
+    image: "images/velar.png",
+    question: "what is the correct price of this range rover velar?",
+    answers: [
+      { text: "$89,000", correct: false },
+      { text: "$35,000", correct: false },
+      { text: "$65,000", correct: true },
+      { text: "$120,000", correct: false },
+    ],
+  },
+];

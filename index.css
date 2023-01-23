@@ -2,146 +2,119 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
-  /* variables */
-
-  /* colors */
-  /* --primary: #dee7e7;
-  --co-one: #f8f7ff;
-  --co-two: #242433; */
 }
-
+:root {
+  --hue-nuetral: 200;
+  --hue-wrong: 0;
+  --hue-correct: 145;
+}
 body {
-  background: url(/images/win.png) center/cover no-repeat;
-}
-
-/* side images */
-.left,
-.right {
-  background: url(/images/wheel.png) center/cover no-repeat;
-  width: 20vw;
+  --hue: var(--hue-nuetral);
+  /* background-color: hsl(var(--hue), 100%, 20%); */
+  /* background: linear-gradient(to top, hsl(var(--hue), 100%, 20%), 10%, black); */
+  background: linear-gradient(to top, rgb(28, 168, 28), 40%, rgb(2, 1, 11));
   height: 100vh;
-  position: absolute;
-  top: 0;
-}
-.left {
-  left: 0;
-}
-.right {
-  right: 0;
 }
 
-/* header */
-#header {
+.image {
+  height: 400px;
+  width: 600px;
   border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 4em auto;
-  width: 50vw;
-  height: 4em;
+  border: solid 2px black;
 }
-
-/* title */
-#title {
-  background: linear-gradient(black 50%, orange 60%);
+/* title/header */
+.title {
+  background: linear-gradient(rgb(80, 255, 5) 30%, rgb(255, 214, 29) 65%);
+  background-clip: border-box;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-family: Lobster, sans-serif;
-  font-size: 5rem;
+  margin: 0.5em;
+  font-size: 3em;
+  text-align: center;
 }
-/* main-content */
-#main-content {
-  background: rgba(0, 0, 0, 0.8);
-  border-radius: 5px;
+
+/* main content */
+.main-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 50vw;
-  height: 65vh;
+  width: 600px;
   margin: auto;
-}
-
-/* sub-header */
-.sub-header {
-  color: white;
-}
-
-/* para-text */
-.para-text {
-  color: white;
-  width: 50%;
-  margin: 1em;
-  padding: 5px;
-  font-size: 1.5rem;
-}
-
-/* btn */
-.btn {
-  color: black;
-  font-size: 15px;
-  font-weight: 500;
-  height: 5em;
-  width: 10em;
-  border-radius: 50%;
-}
-
-/* span */
-.span-one {
-  text-decoration: underline;
-  font-weight: 500;
-}
-
-/* div wrapper */
-.wrapper {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* images for questions */
-.image {
-  height: 350px;
-  width: 500px;
-  /* margin: 2em; */
-  margin-top: 3em;
-  margin-bottom: 2em;
-  border-radius: 25px;
-}
-
-/* question text */
-.question {
-  color: white;
-  margin-bottom: 1em;
-}
-
-/* question button */
-.question-btn {
-  color: black;
-  height: 3em;
-  width: 6em;
   border-radius: 5px;
+  color: white;
+}
+
+/* .show-starter{
+  display: flex;
+  flex-direction: row-reverse;
+
+  color: white;
+} */
+
+/* questions */
+.question {
+  font-size: 1.5rem;
   margin: 1em;
+  text-align: center;
+}
+
+/* buttons */
+.buttons {
+  height: 100px;
+  width: 400px;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 10px;
+}
+.question-btn {
   font-size: 1rem;
 }
 
-/* div container */
-/* .container {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-} */
-
-/* score tracking */
+/* begin game button */
+.start-btn,
+.next-btn {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  width: 120px;
+  height: 50px;
+  border: solid 2px black;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+/* button hover */
+button:hover {
+  border: solid 2px black;
+}
+.correct {
+  background-color: green;
+  color: white;
+}
+.wrong {
+  background-color: red;
+  color: white;
+}
+.wrong,
+.correct {
+  border: solid 2px black;
+}
+/* score */
 .score {
-  color: orange;
+  margin: 15px;
+  font-size: 2rem;
+}
+
+/* display none */
+.hide {
+  display: none;
+}
+
+.sub-header {
+  margin: 1em;
+}
+
+.para-text {
   font-size: 1.5rem;
-  margin-top: 10px;
-  margin-left: 9.5em;
-  text-decoration: underline;
+  margin: 0.5em 1em;
 }
