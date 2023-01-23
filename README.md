@@ -1,9 +1,9 @@
 # Milestone-One-Browser-Game
 This is a browser game for my Milestone project, written in html, CSS, and JavaScript.
 
-Title: (title)
+Title: Bid to Win 
 
-My game will be a price guessing trivia game, inspired by the price is right. 
+My game will be a price guessing game, inspired by the price is right. 
 You will have to guess the price of random items that exist in today's markets.
 
 100 points will be awarded for every correct answer and -25 points for every wrong answer.
