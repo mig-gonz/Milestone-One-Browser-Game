@@ -60,6 +60,10 @@ body {
   text-align: center;
 }
 
+.span-one {
+  text-decoration: underline;
+}
+
 /* buttons */
 .buttons {
   height: 100px;
@@ -92,7 +96,7 @@ button:hover {
   color: white;
 }
 .wrong {
-  background-color: red;
+  background-color: rgb(183, 37, 37);
   color: white;
 }
 .wrong,

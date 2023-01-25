@@ -1,4 +1,5 @@
 // declared variables
+const mainContainer = document.querySelector(".main-container");
 const startBtn = document.querySelector(".start-btn");
 const questionElement = document.querySelector(".question");
 const buttons = document.querySelector(".buttons");
@@ -12,6 +13,111 @@ let points = 0;
 let pointKeeper = document.querySelector(".points");
 let randomQuestions, questionIndex;
 // var end
+
+// questions array
+const questions = [
+  {
+    image: "images/lawn-mower.png",
+    question: "what is the correct price of this lawnmower?",
+    answers: [
+      { text: "$349", correct: false },
+      { text: "$659", correct: false },
+      { text: "$739", correct: false },
+      { text: "$459", correct: true },
+    ],
+  },
+  {
+    image: "images/dog-food.png",
+    question: "what is the correct price of this bag of dog food?",
+    answers: [
+      { text: "$3.86", correct: false },
+      { text: "$13.58", correct: true },
+      { text: "$7.89", correct: false },
+      { text: "$17.99", correct: false },
+    ],
+  },
+  {
+    image: "images/egg.png",
+    question: "what is the correct price of these eggs?",
+    answers: [
+      { text: "$4.79", correct: false },
+      { text: "$12.00", correct: false },
+      { text: "$9.89", correct: true },
+      { text: "$6.79", correct: false },
+    ],
+  },
+  {
+    image: "images/nmd.png",
+    question: "what is the correct price of this pair of addidas sneakers?",
+    answers: [
+      { text: "$80", correct: false },
+      { text: "$99", correct: false },
+      { text: "$220", correct: false },
+      { text: "$120", correct: true },
+    ],
+  },
+  {
+    image: "images/velar.png",
+    question: "what is the correct price of this range rover velar?",
+    answers: [
+      { text: "$89,000", correct: false },
+      { text: "$35,000", correct: false },
+      { text: "$65,000", correct: true },
+      { text: "$120,000", correct: false },
+    ],
+  },
+  {
+    image: "images/couch.png",
+    question: "what is the correct price of this couch?",
+    answers: [
+      { text: "$6,500", correct: false },
+      { text: "$2,500", correct: false },
+      { text: "$7,999", correct: true },
+      { text: "$12,999", correct: false },
+    ],
+  },
+  {
+    image: "images/ps5.png",
+    question: "what is the correct price of this PlayStation 5 controller?",
+    answers: [
+      { text: "$69.99", correct: true },
+      { text: "$59.99", correct: false },
+      { text: "$39.99", correct: false },
+      { text: "$79.99", correct: false },
+    ],
+  },
+  {
+    image: "images/drone.png",
+    question: "what is the correct price of this drone?",
+    answers: [
+      { text: "$350", correct: false },
+      { text: "$369", correct: false },
+      { text: "$299", correct: false },
+      { text: "$450", correct: true },
+    ],
+  },
+  {
+    image: "images/headset.png",
+    question: "what is the correct price of these JBL gaming headset?",
+    answers: [
+      { text: "$150", correct: false },
+      { text: "$129", correct: false },
+      { text: "$249", correct: true },
+      { text: "$329", correct: false },
+    ],
+  },
+  {
+    image: "images/computer.png",
+    question: "what is the correct price of these JBL gaming headset?",
+    answers: [
+      { text: "$1,199", correct: true },
+      { text: "$889", correct: false },
+      { text: "$1,399", correct: false },
+      { text: "$1,669", correct: false },
+    ],
+  },
+];
+// array end <><>
 
 // start/next button event listeners
 startBtn.addEventListener("click", startGame);
@@ -94,6 +200,10 @@ function selectedAnswer(e) {
     startBtn.innerText = "Restart";
     startBtn.classList.remove("hide");
   }
+
+  if (points === 700) {
+    youWin();
+  }
 }
 // selected answer function end
 
@@ -115,56 +225,8 @@ function clearStatusClass(element) {
 }
 //  clear status end <><>
 
-// questions array
-const questions = [
-  {
-    image: "images/lawn-mower.png",
-    question: "what is the correct price of this lawnmower?",
-    answers: [
-      { text: "$349", correct: false },
-      { text: "$659", correct: false },
-      { text: "$739", correct: false },
-      { text: "$459", correct: true },
-    ],
-  },
-  {
-    image: "images/dog-food.png",
-    question: "what is the correct price of this bag of dog food?",
-    answers: [
-      { text: "$3.86", correct: false },
-      { text: "$13.58", correct: true },
-      { text: "$7.89", correct: false },
-      { text: "$17.99", correct: false },
-    ],
-  },
-  {
-    image: "images/egg.png",
-    question: "what is the correct price of these eggs?",
-    answers: [
-      { text: "$4.79", correct: false },
-      { text: "$12.00", correct: false },
-      { text: "$9.89", correct: true },
-      { text: "$6.79", correct: false },
-    ],
-  },
-  {
-    image: "images/nmd.png",
-    question: "what is the correct price of this pair of addidas sneakers?",
-    answers: [
-      { text: "$80", correct: false },
-      { text: "$99", correct: false },
-      { text: "$220", correct: false },
-      { text: "$120", correct: true },
-    ],
-  },
-  {
-    image: "images/velar.png",
-    question: "what is the correct price of this range rover velar?",
-    answers: [
-      { text: "$89,000", correct: false },
-      { text: "$35,000", correct: false },
-      { text: "$65,000", correct: true },
-      { text: "$120,000", correct: false },
-    ],
-  },
-];
+// you win function
+function youWin() {
+  mainContainer.classList.add("hide");
+  // console.log("you win");
+}
