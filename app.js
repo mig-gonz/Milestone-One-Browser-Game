@@ -1,5 +1,5 @@
 // declared variables
-const mainContainer = document.querySelector(".main-container");
+const mainContent = document.querySelector(".main-content");
 const startBtn = document.querySelector(".start-btn");
 const questionElement = document.querySelector(".question");
 const buttons = document.querySelector(".buttons");
@@ -9,6 +9,9 @@ const score = document.querySelector(".score");
 const subHeading = document.querySelector(".sub-header");
 const paraText = document.querySelector(".para-text");
 const btn = document.querySelector(".btn");
+
+let lose = document.createElement("h2");
+let win = document.createElement("h2");
 let points = 0;
 let pointKeeper = document.querySelector(".points");
 let randomQuestions, questionIndex;
@@ -133,6 +136,10 @@ function startGame() {
   buttons.classList.remove("hide");
   score.classList.remove("hide");
   nextButton.classList.remove("hide");
+  img.classList.remove("hide");
+
+  lose.setAttribute("class", "hide");
+  win.setAttribute("class", "hide");
 
   points = 0;
   pointKeeper.innerText = points;
@@ -199,6 +206,7 @@ function selectedAnswer(e) {
   } else {
     startBtn.innerText = "Restart";
     startBtn.classList.remove("hide");
+    youLose();
   }
 
   if (points === 700) {
@@ -227,6 +235,30 @@ function clearStatusClass(element) {
 
 // you win function
 function youWin() {
-  mainContainer.classList.add("hide");
+  img.classList.add("hide");
+  questionElement.classList.add("hide");
+  buttons.classList.add("hide");
+  nextButton.classList.add("hide");
+
+  startBtn.classList.remove("hide");
+  startBtn.innerText = "Restart";
+
+  win = document.createElement("h2");
+  win.innerText = "YOU WIN";
+  win.setAttribute("class", "title");
+  mainContent.appendChild(win);
+
   // console.log("you win");
+}
+
+function youLose() {
+  img.classList.add("hide");
+  questionElement.classList.add("hide");
+  buttons.classList.add("hide");
+  nextButton.classList.add("hide");
+
+  lose.innerText = " YOU LOST!";
+  lose.setAttribute("class", "title");
+  mainContent.appendChild(lose);
+  // console.log("you lose!");
 }
