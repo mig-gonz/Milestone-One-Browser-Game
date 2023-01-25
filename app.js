@@ -9,6 +9,7 @@ const score = document.querySelector(".score");
 const subHeading = document.querySelector(".sub-header");
 const paraText = document.querySelector(".para-text");
 const btn = document.querySelector(".btn");
+const animation = document.querySelector(".animation");
 
 let lose = document.createElement("h2");
 let win = document.createElement("h2");
@@ -140,6 +141,8 @@ function startGame() {
   lose.setAttribute("class", "hide");
   win.setAttribute("class", "hide");
 
+  animation.classList.add("hide");
+
   //  changes the score value
   points = 0;
   pointKeeper.innerText = points;
@@ -258,12 +261,15 @@ function youWin() {
   buttons.classList.add("hide");
   nextButton.classList.add("hide");
 
+  animation.classList.remove("hide");
+
   startBtn.classList.remove("hide");
   startBtn.innerText = "Restart";
 
   win = document.createElement("h2");
   win.innerText = "YOU WIN";
   win.setAttribute("class", "title");
+
   mainContent.appendChild(win);
 }
 
