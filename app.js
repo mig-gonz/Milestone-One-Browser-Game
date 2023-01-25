@@ -14,18 +14,18 @@ let lose = document.createElement("h2");
 let win = document.createElement("h2");
 let points = 0;
 let pointKeeper = document.querySelector(".points");
-let randomQuestions, questionIndex;
-// var end
+let randomQuestions;
+let questionsArrayIndex;
 
-// questions array
+// array of questions
 const questions = [
   {
     image: "images/lawn-mower.png",
-    question: "what is the correct price of this lawnmower?",
+    question: "what is the correct price of this lawn mower?",
     answers: [
-      { text: "$349", correct: false },
-      { text: "$659", correct: false },
-      { text: "$739", correct: false },
+      { text: "$349" },
+      { text: "$659" },
+      { text: "$739" },
       { text: "$459", correct: true },
     ],
   },
@@ -33,29 +33,29 @@ const questions = [
     image: "images/dog-food.png",
     question: "what is the correct price of this bag of dog food?",
     answers: [
-      { text: "$3.86", correct: false },
+      { text: "$3.86" },
       { text: "$13.58", correct: true },
-      { text: "$7.89", correct: false },
-      { text: "$17.99", correct: false },
+      { text: "$7.89" },
+      { text: "$17.99" },
     ],
   },
   {
     image: "images/egg.png",
     question: "what is the correct price of these eggs?",
     answers: [
-      { text: "$4.79", correct: false },
-      { text: "$12.00", correct: false },
+      { text: "$4.79" },
+      { text: "$12.00" },
       { text: "$9.89", correct: true },
-      { text: "$6.79", correct: false },
+      { text: "$6.79" },
     ],
   },
   {
     image: "images/nmd.png",
     question: "what is the correct price of this pair of addidas sneakers?",
     answers: [
-      { text: "$80", correct: false },
-      { text: "$99", correct: false },
-      { text: "$220", correct: false },
+      { text: "$80" },
+      { text: "$99" },
+      { text: "$220" },
       { text: "$120", correct: true },
     ],
   },
@@ -63,20 +63,20 @@ const questions = [
     image: "images/velar.png",
     question: "what is the correct price of this range rover velar?",
     answers: [
-      { text: "$89,000", correct: false },
-      { text: "$35,000", correct: false },
+      { text: "$89,000" },
+      { text: "$35,000" },
       { text: "$65,000", correct: true },
-      { text: "$120,000", correct: false },
+      { text: "$120,000" },
     ],
   },
   {
     image: "images/couch.png",
     question: "what is the correct price of this couch?",
     answers: [
-      { text: "$6,500", correct: false },
-      { text: "$2,500", correct: false },
+      { text: "$6,500" },
+      { text: "$2,500" },
       { text: "$7,999", correct: true },
-      { text: "$12,999", correct: false },
+      { text: "$12,999" },
     ],
   },
   {
@@ -84,18 +84,18 @@ const questions = [
     question: "what is the correct price of this PlayStation 5 controller?",
     answers: [
       { text: "$69.99", correct: true },
-      { text: "$59.99", correct: false },
-      { text: "$39.99", correct: false },
-      { text: "$79.99", correct: false },
+      { text: "$59.99" },
+      { text: "$39.99" },
+      { text: "$79.99" },
     ],
   },
   {
     image: "images/drone.png",
     question: "what is the correct price of this drone?",
     answers: [
-      { text: "$350", correct: false },
-      { text: "$369", correct: false },
-      { text: "$299", correct: false },
+      { text: "$350" },
+      { text: "$369" },
+      { text: "$299" },
       { text: "$450", correct: true },
     ],
   },
@@ -103,10 +103,10 @@ const questions = [
     image: "images/headset.png",
     question: "what is the correct price of these JBL gaming headset?",
     answers: [
-      { text: "$150", correct: false },
-      { text: "$129", correct: false },
+      { text: "$150" },
+      { text: "$129" },
       { text: "$249", correct: true },
-      { text: "$329", correct: false },
+      { text: "$329" },
     ],
   },
   {
@@ -114,23 +114,21 @@ const questions = [
     question: "what is the correct price of these JBL gaming headset?",
     answers: [
       { text: "$1,199", correct: true },
-      { text: "$889", correct: false },
-      { text: "$1,399", correct: false },
-      { text: "$1,669", correct: false },
+      { text: "$889" },
+      { text: "$1,399" },
+      { text: "$1,669" },
     ],
   },
 ];
-// array end <><>
 
 // start/next button event listeners
 startBtn.addEventListener("click", startGame);
 nextButton.addEventListener("click", () => {
-  questionIndex++;
+  questionsArrayIndex++;
   nextQuestion();
 });
-// event end <><>
 
-// our start game function
+//  start game function
 function startGame() {
   questionElement.classList.remove("hide");
   buttons.classList.remove("hide");
@@ -138,14 +136,17 @@ function startGame() {
   nextButton.classList.remove("hide");
   img.classList.remove("hide");
 
+  // when restart button is clicked
   lose.setAttribute("class", "hide");
   win.setAttribute("class", "hide");
 
+  //  changes the score value
   points = 0;
   pointKeeper.innerText = points;
 
+  // randomly displays questions
   randomQuestions = questions.sort(() => Math.random() - 0.5);
-  questionIndex = 0;
+  questionsArrayIndex = 0;
 
   subHeading.classList.add("hide");
   paraText.classList.add("hide");
@@ -153,55 +154,78 @@ function startGame() {
 
   nextQuestion();
 }
-// start game end  <><>
 
 // next question function
 function nextQuestion() {
-  resetState();
-  showQuestion(randomQuestions[questionIndex]);
-}
-// next question end <><>
+  // resets/clears class
+  // adds next button after answering questions
+  reset();
 
-//  function show question
-function showQuestion(question) {
-  questionElement.innerText = question.question;
-  img.src = question.image;
-  question.answers.forEach((answer) => {
-    const button = document.createElement("button");
-    button.innerText = answer.text;
-    button.classList.add("question-btn");
-    if (answer.correct) {
-      button.dataset.correct = answer.correct;
-    }
-    button.addEventListener("click", selectedAnswer);
-    buttons.appendChild(button);
-  });
+  // displays questions
+  showQuestion(randomQuestions[questionsArrayIndex]);
 }
-// show question end <><>
 
-// fucntion reset state
-function resetState() {
-  clearStatusClass(document.body);
+// reset function
+function reset() {
   nextButton.classList.add("hide");
+
+  // loops through and removes previous buttons
   while (buttons.firstChild) {
     buttons.removeChild(buttons.firstChild);
   }
 }
-// reset state end
+
+//  function show question
+function showQuestion(question) {
+  // targets the questions text and displays the questions in questions array
+  questionElement.innerText = question.question;
+
+  // changes the image. displays the images in questions array
+  img.src = question.image;
+
+  // loops through our buttons replacing them with new buttons and adding questions array content
+  question.answers.forEach((answer) => {
+    const button = document.createElement("button");
+    button.innerText = answer.text;
+    button.classList.add("question-btn");
+
+    // dataset value
+    if (answer.correct) {
+      button.dataset.correct = answer.correct;
+    }
+
+    button.addEventListener("click", selectedAnswer);
+
+    // appends button to our buttons div
+    buttons.appendChild(button);
+  });
+}
+
+// function clear status
+function removeClass(element) {
+  element.classList.remove("correct");
+  element.classList.remove("wrong");
+}
 
 // selected answer function
 function selectedAnswer(e) {
+  // targets the button that is clicked
   const selectedBtn = e.target;
   const correct = selectedBtn.dataset.correct;
+
+  // adds points for choosing the correct answer
   if (correct) {
     points += 100;
     pointKeeper.innerText = points;
   }
-  setStatusClass(document.body, correct);
+
+  // converts buttons into an array
   Array.from(buttons.children).forEach((button) => {
-    setStatusClass(button, button.dataset.correct);
+    setClass(button, button.dataset.correct);
   });
-  if (randomQuestions.length > questionIndex + 1) {
+
+  // reveals next button after question is answered untill the final question or a score of 700 is met
+  if (randomQuestions.length > questionsArrayIndex + 1) {
     nextButton.classList.remove("hide");
   } else {
     startBtn.innerText = "Restart";
@@ -209,31 +233,25 @@ function selectedAnswer(e) {
     youLose();
   }
 
+  // if you score 700 points you win
   if (points === 700) {
     youWin();
   }
 }
-// selected answer function end
 
 // fucntion set class status
-function setStatusClass(element, correct) {
-  clearStatusClass(element);
+function setClass(element, correct) {
+  removeClass(element);
+
+  // adds the class of correct or wrong to button elements
   if (correct) {
     element.classList.add("correct");
   } else {
     element.classList.add("wrong");
   }
 }
-// set status end <><><>
 
-// function clear status
-function clearStatusClass(element) {
-  element.classList.remove("correct");
-  element.classList.remove("wrong");
-}
-//  clear status end <><>
-
-// you win function
+// win function
 function youWin() {
   img.classList.add("hide");
   questionElement.classList.add("hide");
@@ -247,10 +265,9 @@ function youWin() {
   win.innerText = "YOU WIN";
   win.setAttribute("class", "title");
   mainContent.appendChild(win);
-
-  // console.log("you win");
 }
 
+// lose function
 function youLose() {
   img.classList.add("hide");
   questionElement.classList.add("hide");
@@ -260,5 +277,4 @@ function youLose() {
   lose.innerText = " YOU LOST!";
   lose.setAttribute("class", "title");
   mainContent.appendChild(lose);
-  // console.log("you lose!");
 }

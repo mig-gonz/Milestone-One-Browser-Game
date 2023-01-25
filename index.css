@@ -3,15 +3,8 @@
   padding: 0;
   box-sizing: border-box;
 }
-:root {
-  --hue-nuetral: 200;
-  --hue-wrong: 0;
-  --hue-correct: 145;
-}
+
 body {
-  --hue: var(--hue-nuetral);
-  /* background-color: hsl(var(--hue), 100%, 20%); */
-  /* background: linear-gradient(to top, hsl(var(--hue), 100%, 20%), 10%, black); */
   background: linear-gradient(to top, rgb(28, 168, 28), 40%, rgb(2, 1, 11));
   height: 100vh;
 }
@@ -22,7 +15,8 @@ body {
   border-radius: 5px;
   border: solid 2px black;
 }
-/* title/header */
+
+/* header h1 title */
 .title {
   background: linear-gradient(rgb(80, 255, 5) 30%, rgb(255, 214, 29) 65%);
   background-clip: border-box;
@@ -34,7 +28,7 @@ body {
   text-align: center;
 }
 
-/* main content */
+/* main */
 .main-content {
   display: flex;
   flex-direction: column;
@@ -46,13 +40,6 @@ body {
   color: white;
 }
 
-/* .show-starter{
-  display: flex;
-  flex-direction: row-reverse;
-
-  color: white;
-} */
-
 /* questions */
 .question {
   font-size: 1.5rem;
@@ -60,7 +47,7 @@ body {
   text-align: center;
 }
 
-.span-one {
+.underline {
   text-decoration: underline;
 }
 
@@ -76,7 +63,6 @@ body {
   font-size: 1rem;
 }
 
-/* begin game button */
 .start-btn,
 .next-btn {
   margin-top: 1em;
@@ -87,7 +73,7 @@ body {
   border-radius: 5px;
   font-size: 1rem;
 }
-/* button hover */
+
 button:hover {
   border: solid 2px black;
 }
@@ -103,6 +89,7 @@ button:hover {
 .correct {
   border: solid 2px black;
 }
+
 /* score */
 .score {
   margin: 15px;
