@@ -8,7 +8,6 @@ const img = document.querySelector(".image");
 const score = document.querySelector(".score");
 const subHeading = document.querySelector(".sub-header");
 const paraText = document.querySelector(".para-text");
-// const btn = document.querySelector(".btn");
 const animation = document.querySelector(".animation-win");
 const youLost = document.querySelector(".you-lost");
 
@@ -138,10 +137,9 @@ function startGame() {
   nextButton.classList.remove("hide");
   img.classList.remove("hide");
 
-  // when restart button is clicked
+  // when restart button(start button) is clicked at the end of the game.
   lose.setAttribute("class", "hide");
   win.setAttribute("class", "hide");
-
   animation.classList.add("hide");
   youLost.classList.add("hide");
 
