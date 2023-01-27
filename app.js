@@ -10,6 +10,8 @@ const subHeading = document.querySelector(".sub-header");
 const paraText = document.querySelector(".para-text");
 const animation = document.querySelector(".animation-win");
 const youLost = document.querySelector(".you-lost");
+const winGif = document.querySelector(".win-gif");
+const loseGif = document.querySelector(".lose-gif");
 
 let lose = document.createElement("h2");
 let win = document.createElement("h2");
@@ -142,6 +144,8 @@ function startGame() {
   win.setAttribute("class", "hide");
   animation.classList.add("hide");
   youLost.classList.add("hide");
+  winGif.classList.add("hide");
+  loseGif.classList.add("hide");
 
   //  changes the score value
   points = 0;
@@ -261,6 +265,7 @@ function youWin() {
   buttons.classList.add("hide");
   nextButton.classList.add("hide");
 
+  winGif.classList.remove("hide");
   animation.classList.remove("hide");
   mainContent.style.background = "none";
 
@@ -280,6 +285,7 @@ function youLose() {
   buttons.classList.add("hide");
   nextButton.classList.add("hide");
 
+  loseGif.classList.remove("hide");
   youLost.classList.remove("hide");
 
   mainContent.style.background = "none";

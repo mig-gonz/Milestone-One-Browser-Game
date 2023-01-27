@@ -118,17 +118,28 @@ button:hover {
   margin: 0.5em 1em;
 }
 
+.win-gif {
+  margin-top: 3em;
+}
+
+.lose-gif {
+  margin-top: 3em;
+}
+
 .animation-win {
   position: relative;
   border: solid 1px black;
   border-radius: 100px;
   width: 300px;
   margin: auto;
+  margin-top: 0.5em;
   text-align: center;
   font-size: 3rem;
   text-transform: uppercase;
   color: black;
-  animation: win 1.5s infinte;
+  animation-name: win;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
 }
 
 .you-lost {
@@ -136,6 +147,7 @@ button:hover {
   background-color: red;
   border-radius: 100px;
   width: 300px;
+  margin-top: 0.5em;
   margin: auto;
   text-align: center;
   font-size: 3rem;
