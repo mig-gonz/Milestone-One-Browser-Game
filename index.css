@@ -16,18 +16,6 @@ body {
   border: solid 2px black;
 }
 
-/* header h1 title */
-.title {
-  background: linear-gradient(rgb(80, 255, 5) 30%, rgb(255, 214, 29) 65%);
-  background-clip: border-box;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-family: Lobster, sans-serif;
-  margin: 0.5em;
-  font-size: 3em;
-  text-align: center;
-}
-
 /* main */
 .main-content {
   display: flex;
@@ -38,6 +26,19 @@ body {
   margin: auto;
   border-radius: 5px;
   color: white;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* header h1 title */
+.title {
+  background: linear-gradient(rgb(80, 255, 5) 30%, rgb(255, 214, 29) 65%);
+  background-clip: border-box;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: Lobster, sans-serif;
+  margin: 0.5em;
+  font-size: 3em;
+  text-align: center;
 }
 
 /* questions */
@@ -61,6 +62,7 @@ body {
 }
 .question-btn {
   font-size: 1rem;
+  transition: 0.5s;
 }
 
 .start-btn,
@@ -110,12 +112,11 @@ button:hover {
   margin: 0.5em 1em;
 }
 
-.animation {
+.animation-win {
   position: relative;
   border: solid 1px black;
   border-radius: 100px;
   width: 300px;
-  /* height: 75px; */
   margin: auto;
   text-align: center;
   font-size: 3rem;
@@ -127,16 +128,28 @@ button:hover {
   /* animation: name duration timing-function delay iteration-count direction fill-mode; */
 }
 
+.you-lost {
+  border: solid 1px black;
+  background-color: red;
+  border-radius: 100px;
+  width: 300px;
+  margin: auto;
+  text-align: center;
+  font-size: 3rem;
+  text-transform: uppercase;
+}
+
 @keyframes win {
   0% {
     background-color: yellow;
-    right: 200px;
+    /* right: 200px; */
   }
   50% {
-    background-color: red;
+    background-color: blue;
+    color: blue;
   }
   100% {
     background-color: yellow;
-    right: -200px;
+    /* right: -200px; */
   }
 }

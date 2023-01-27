@@ -8,8 +8,9 @@ const img = document.querySelector(".image");
 const score = document.querySelector(".score");
 const subHeading = document.querySelector(".sub-header");
 const paraText = document.querySelector(".para-text");
-const btn = document.querySelector(".btn");
-const animation = document.querySelector(".animation");
+// const btn = document.querySelector(".btn");
+const animation = document.querySelector(".animation-win");
+const youLost = document.querySelector(".you-lost");
 
 let lose = document.createElement("h2");
 let win = document.createElement("h2");
@@ -35,9 +36,9 @@ const questions = [
     question: "what is the correct price of this bag of dog food?",
     answers: [
       { text: "$3.86" },
-      { text: "$13.58", correct: true },
+      { text: "$13.58" },
       { text: "$7.89" },
-      { text: "$17.99" },
+      { text: "$17.99", correct: true },
     ],
   },
   {
@@ -96,23 +97,23 @@ const questions = [
     answers: [
       { text: "$350" },
       { text: "$369" },
-      { text: "$299" },
-      { text: "$450", correct: true },
+      { text: "$249", correct: true },
+      { text: "$450" },
     ],
   },
   {
     image: "images/headset.png",
     question: "what is the correct price of these JBL gaming headset?",
     answers: [
-      { text: "$150" },
+      { text: "$150", correct: true },
       { text: "$129" },
-      { text: "$249", correct: true },
+      { text: "$249" },
       { text: "$329" },
     ],
   },
   {
     image: "images/computer.png",
-    question: "what is the correct price of these JBL gaming headset?",
+    question: "what is the correct price of this computer?",
     answers: [
       { text: "$1,199", correct: true },
       { text: "$889" },
@@ -142,6 +143,7 @@ function startGame() {
   win.setAttribute("class", "hide");
 
   animation.classList.add("hide");
+  youLost.classList.add("hide");
 
   //  changes the score value
   points = 0;
@@ -262,12 +264,12 @@ function youWin() {
   nextButton.classList.add("hide");
 
   animation.classList.remove("hide");
+  mainContent.style.background = "none";
 
   startBtn.classList.remove("hide");
   startBtn.innerText = "Restart";
 
-  win = document.createElement("h2");
-  win.innerText = "YOU WIN";
+  win.innerText = "YOU WON!";
   win.setAttribute("class", "title");
 
   mainContent.appendChild(win);
@@ -280,7 +282,11 @@ function youLose() {
   buttons.classList.add("hide");
   nextButton.classList.add("hide");
 
-  lose.innerText = " YOU LOST!";
+  youLost.classList.remove("hide");
+
+  mainContent.style.background = "none";
+
+  lose.innerText = "YOU LOST!";
   lose.setAttribute("class", "title");
   mainContent.appendChild(lose);
 }
