@@ -1,10 +1,10 @@
 // declared variables
 const mainContent = document.querySelector(".main-content");
 const startBtn = document.querySelector(".start-btn");
-const questionElement = document.querySelector(".question");
+const questionElement = document.querySelector(".question") as HTMLDivElement;
 const buttons = document.querySelector(".buttons");
 const nextButton = document.querySelector(".next-btn");
-const img = document.querySelector(".image");
+const img = document.querySelector(".image") as HTMLImageElement;
 const score = document.querySelector(".score");
 const subHeading = document.querySelector(".sub-header");
 const paraText = document.querySelector(".para-text");
@@ -16,9 +16,9 @@ const loseGif = document.querySelector(".lose-gif");
 let lose = document.createElement("h2");
 let win = document.createElement("h2");
 let points = 0;
-let pointKeeper = document.querySelector(".points");
-let randomQuestions;
-let questionsArrayIndex;
+let pointKeeper = document.querySelector(".points") as HTMLDivElement;
+let randomQuestions: typeof questions;
+let questionsArrayIndex: number;
 
 // array of questions
 const questions = [
@@ -125,39 +125,42 @@ const questions = [
 ];
 
 // start/next button event listeners
-startBtn.addEventListener("click", startGame);
-nextButton.addEventListener("click", () => {
+startBtn!.addEventListener("click", startGame);
+nextButton!.addEventListener("click", () => {
   questionsArrayIndex++;
   nextQuestion();
 });
 
 //  start game function
 function startGame() {
-  questionElement.classList.remove("hide");
-  buttons.classList.remove("hide");
-  score.classList.remove("hide");
-  nextButton.classList.remove("hide");
-  img.classList.remove("hide");
+  questionElement!.classList.remove("hide");
+  buttons!.classList.remove("hide");
+  score!.classList.remove("hide");
+  nextButton!.classList.remove("hide");
+  img!.classList.remove("hide");
 
   // when restart button(start button) is clicked at the end of the game.
   lose.setAttribute("class", "hide");
   win.setAttribute("class", "hide");
-  animation.classList.add("hide");
-  youLost.classList.add("hide");
-  winGif.classList.add("hide");
-  loseGif.classList.add("hide");
+  animation!.classList.add("hide");
+  youLost!.classList.add("hide");
+  winGif!.classList.add("hide");
+  loseGif!.classList.add("hide");
 
   //  changes the score value
   points = 0;
-  pointKeeper.innerText = points;
+  let pointKeeper: HTMLDivElement | null = document.querySelector(".points");
+  if (pointKeeper !== null) {
+    pointKeeper.innerText = points.toString();
+  }
 
   // randomly displays questions
   randomQuestions = questions.sort(() => Math.random() - 0.5);
   questionsArrayIndex = 0;
 
-  subHeading.classList.add("hide");
-  paraText.classList.add("hide");
-  startBtn.classList.add("hide");
+  subHeading!.classList.add("hide");
+  paraText!.classList.add("hide");
+  startBtn!.classList.add("hide");
 
   nextQuestion();
 }
@@ -174,48 +177,52 @@ function nextQuestion() {
 
 // reset function
 function reset() {
-  nextButton.classList.add("hide");
+  nextButton!.classList.add("hide");
 
   // loops through and removes previous buttons
-  while (buttons.firstChild) {
-    buttons.removeChild(buttons.firstChild);
+  while (buttons!.firstChild) {
+    buttons!.removeChild(buttons!.firstChild);
   }
 }
 
 //  function show question
-function showQuestion(question) {
+function showQuestion(question: { image: any; question: any; answers: any }) {
   // targets the questions text and displays the questions in questions array
-  questionElement.innerText = question.question;
+  questionElement!.innerText = question.question;
 
   // changes the image. displays the images in questions array
-  img.src = question.image;
+  img!.src = question.image;
 
   // loops through our buttons replacing them with new buttons and adding questions array content
-  question.answers.forEach((answer) => {
-    const button = document.createElement("button");
-    button.innerText = answer.text;
-    button.classList.add("question-btn");
+  question.answers.forEach(
+    (answer: { text: string; correct: string | undefined }) => {
+      const button = document.createElement("button");
+      button.innerText = answer.text;
+      button.classList.add("question-btn");
 
-    // dataset value
-    if (answer.correct) {
-      button.dataset.correct = answer.correct;
+      // dataset value
+      if (answer.correct) {
+        button.dataset.correct = answer.correct;
+      }
+
+      button.addEventListener("click", selectedAnswer);
+
+      // appends button to our buttons div
+      buttons!.appendChild(button);
     }
-
-    button.addEventListener("click", selectedAnswer);
-
-    // appends button to our buttons div
-    buttons.appendChild(button);
-  });
+  );
 }
 
 // function clear status
-function removeClass(element) {
+function removeClass(element: {
+  classList: { remove: (arg0: string) => void };
+}) {
   element.classList.remove("correct");
   element.classList.remove("wrong");
 }
 
 // selected answer function
-function selectedAnswer(e) {
+function selectedAnswer(e: { target: any }) {
   // targets the button that is clicked
   const selectedBtn = e.target;
   const correct = selectedBtn.dataset.correct;
@@ -223,20 +230,24 @@ function selectedAnswer(e) {
   // adds points for choosing the correct answer
   if (correct) {
     points += 100;
-    pointKeeper.innerText = points;
+    pointKeeper!.innerText = points.toString();
   }
 
   // converts buttons into an array
-  Array.from(buttons.children).forEach((button) => {
-    setClass(button, button.dataset.correct);
+  Array.from(buttons!.children).forEach((button) => {
+    setClass(
+      button as HTMLButtonElement,
+      (button as HTMLButtonElement).dataset.correct
+    );
   });
 
   // reveals next button after question is answered untill the final question or a score of 700 is met
   if (randomQuestions.length > questionsArrayIndex + 1) {
-    nextButton.classList.remove("hide");
+    nextButton!.classList.remove("hide");
   } else {
-    startBtn.innerText = "Restart";
-    startBtn.classList.remove("hide");
+    (startBtn as HTMLButtonElement).innerText = "Restart";
+
+    startBtn!.classList.remove("hide");
     youLose();
   }
 
@@ -247,7 +258,7 @@ function selectedAnswer(e) {
 }
 
 // fucntion set class status
-function setClass(element, correct) {
+function setClass(element: Element, correct: any) {
   removeClass(element);
 
   // adds the class of correct or wrong to button elements
@@ -262,35 +273,35 @@ function setClass(element, correct) {
 function youWin() {
   img.classList.add("hide");
   questionElement.classList.add("hide");
-  buttons.classList.add("hide");
-  nextButton.classList.add("hide");
+  buttons!.classList.add("hide");
+  nextButton!.classList.add("hide");
 
-  winGif.classList.remove("hide");
-  animation.classList.remove("hide");
-  mainContent.style.background = "none";
+  winGif!.classList.remove("hide");
+  animation!.classList.remove("hide");
+  (mainContent as HTMLElement).style.background = "none";
 
-  startBtn.classList.remove("hide");
-  startBtn.innerText = "Restart";
+  startBtn!.classList.remove("hide");
+  (startBtn as HTMLElement).innerText = "Restart";
 
   win.innerText = "YOU WON!";
   win.setAttribute("class", "title");
 
-  mainContent.appendChild(win);
+  mainContent!.appendChild(win);
 }
 
 // lose function
 function youLose() {
   img.classList.add("hide");
   questionElement.classList.add("hide");
-  buttons.classList.add("hide");
-  nextButton.classList.add("hide");
+  buttons!.classList.add("hide");
+  nextButton!.classList.add("hide");
 
-  loseGif.classList.remove("hide");
-  youLost.classList.remove("hide");
+  loseGif!.classList.remove("hide");
+  youLost!.classList.remove("hide");
 
-  mainContent.style.background = "none";
+  (mainContent as HTMLElement).style.background = "none";
 
   lose.innerText = "YOU LOST!";
   lose.setAttribute("class", "title");
-  mainContent.appendChild(lose);
+  mainContent!.appendChild(lose);
 }
