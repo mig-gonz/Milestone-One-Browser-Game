@@ -9,3 +9,6 @@ My game will be a price guessing game, inspired by the price is right.  You will
 
 To win, you have to score 700 points on or before the final question. And you lose the game if you complete the game without achieving a score of 700 points.
 
+## Update
+
+Migrated to Typescript
